@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arzoo Shamoon — Bioinformatician</title>
+<meta name="description" content="Arzoo Shamoon — Doctoral Researcher &amp; Bioinformatician, single-cell genomics and cancer research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,450;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f0eee6;
+    --paper-alt:#e7e2d4;
+    --ink:#241f38;
+    --ink-soft:#514a68;
+    --rose:#b3546e;
+    --rose-soft:#c98a9c;
+    --teal:#2f5d53;
+    --line:#d8d2c1;
+    --max:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--rose-soft);color:#fff;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 32px;}
+  @media (max-width:640px){.wrap{padding:0 20px;}}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--rose);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;background:var(--rose);display:inline-block;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(240,238,230,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;align-items:center;justify-content:space-between;
+    height:64px;
+  }
+  .nav-mark{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:500;font-size:14px;letter-spacing:0.02em;
+  }
+  .nav-mark b{color:var(--rose);}
+  .nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0;}
+  .nav-links a{
+    font-size:13.5px;text-decoration:none;color:var(--ink-soft);
+    font-family:'IBM Plex Mono',monospace;
+    letter-spacing:0.02em;
+    transition:color .15s;
+  }
+  .nav-links a:hover{color:var(--rose);}
+  @media (max-width:640px){.nav-links{gap:16px;} .nav-links a{font-size:12px;}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 88px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .seq-ticker{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;justify-content:space-evenly;
+    pointer-events:none;
+    opacity:0.55;
+    -webkit-mask-image:linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+    mask-image:linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+  }
+  .seq-row{
+    white-space:nowrap;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.35em;
+    color:var(--ink);
+    opacity:0.08;
+    width:max-content;
+    animation:scrollx 70s linear infinite;
+  }
+  .seq-row.rev{animation-direction:reverse;color:var(--rose);}
+  @keyframes scrollx{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .seq-row{animation:none;}
+  }
+  .hero-inner{position:relative;z-index:1;}
+  .hero h1{
+    font-size:clamp(42px,7vw,78px);
+    line-height:0.98;
+    margin-top:22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--rose);
+    font-weight:450;
+  }
+  .hero .role{
+    margin-top:18px;
+    font-size:clamp(16px,2vw,19px);
+    color:var(--ink-soft);
+    max-width:640px;
+  }
+  .hero .role strong{color:var(--ink);font-weight:600;}
+  .hero-links{
+    margin-top:32px;
+    display:flex;flex-wrap:wrap;gap:12px;
+  }
+  .btn{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.03em;
+    text-decoration:none;
+    padding:11px 20px;
+    border-radius:2px;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    transition:all .15s;
+  }
+  .btn:hover{background:var(--ink);color:var(--paper);}
+  .btn.primary{background:var(--ink);color:var(--paper);}
+  .btn.primary:hover{background:var(--rose);border-color:var(--rose);}
+
+  /* ---------- SECTION shared ---------- */
+  section{padding:84px 0;}
+  section.alt{background:var(--paper-alt);}
+  .section-head{margin-bottom:44px;max-width:640px;}
+  .section-head h2{font-size:clamp(28px,4vw,38px);margin-top:14px;}
+  .section-head p{color:var(--ink-soft);margin-top:14px;font-size:15.5px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:56px;
+    align-items:start;
+  }
+  @media (max-width:720px){.about-grid{grid-template-columns:1fr;}}
+  .portrait{
+    aspect-ratio:1/1;
+    background:
+      repeating-linear-gradient(135deg, var(--teal) 0 2px, transparent 2px 14px),
+      var(--paper);
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--ink-soft);
+    text-align:center;padding:16px;
+  }
+  .about-text p{margin:0 0 16px;font-size:16px;color:var(--ink-soft);}
+  .about-text p strong{color:var(--ink);font-weight:600;}
+
+  /* ---------- RESEARCH CARDS ---------- */
+  .card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .card{
+    background:var(--paper);
+    padding:30px 26px;
+  }
+  section.alt .card{background:var(--paper-alt);}
+  .card .num{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;color:var(--rose);
+  }
+  .card h3{font-size:19px;margin-top:14px;font-weight:600;}
+  .card p{font-size:14px;color:var(--ink-soft);margin-top:10px;}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{border-left:1px solid var(--line);margin-left:6px;}
+  .tl-item{position:relative;padding:0 0 42px 32px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute;left:-5px;top:4px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--paper);border:2px solid var(--rose);
+  }
+  .tl-date{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;color:var(--rose);letter-spacing:0.03em;
+  }
+  .tl-item h3{font-size:20px;margin-top:8px;}
+  .tl-item .org{font-size:14.5px;color:var(--ink-soft);margin-top:4px;}
+  .tl-item p{font-size:14.5px;color:var(--ink-soft);margin-top:10px;max-width:600px;}
+
+  /* ---------- PUBLICATIONS ---------- */
+  .pub-list{border-top:1px solid var(--line);}
+  .pub{
+    display:grid;
+    grid-template-columns:100px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:640px){.pub{grid-template-columns:1fr;gap:6px;}}
+  .pub-year{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;color:var(--ink-soft);
+  }
+  .pub h3{font-size:17px;font-weight:600;line-height:1.4;}
+  .pub .authors{font-size:13.5px;color:var(--ink-soft);margin-top:6px;}
+  .pub .authors .me{color:var(--ink);font-weight:600;}
+  .pub .venue{font-size:13.5px;font-style:italic;color:var(--rose);margin-top:4px;}
+  .pub a{
+    display:inline-block;margin-top:10px;font-size:12.5px;
+    font-family:'IBM Plex Mono',monospace;text-decoration:none;
+    color:var(--teal);border-bottom:1px solid var(--teal);
+  }
+
+  /* ---------- SKILLS ---------- */
+  .tag-grid{display:flex;flex-wrap:wrap;gap:10px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace;font-size:13px;
+    padding:9px 14px;border:1px solid var(--line);
+    background:var(--paper);color:var(--ink-soft);
+  }
+  section.alt .tag{background:var(--paper-alt);}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:var(--ink);color:var(--paper);
+  }
+  .contact .section-head p{color:#c9c4da;}
+  .contact-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:24px;margin-top:8px;
+  }
+  .contact-item{border-top:1px solid rgba(255,255,255,0.14);padding-top:16px;}
+  .contact-item .eyebrow{color:var(--rose-soft);}
+  .contact-item .eyebrow::before{background:var(--rose-soft);}
+  .contact-item a{
+    display:block;margin-top:10px;font-size:16px;font-weight:500;
+    text-decoration:none;color:var(--paper);
+  }
+  .contact-item a:hover{color:var(--rose-soft);}
+
+  footer{
+    background:var(--ink);color:#8a8299;
+    font-family:'IBM Plex Mono',monospace;font-size:12px;
+    padding:24px 0 40px;
+  }
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="nav-mark">A<b>·</b>SHAMOON</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="seq-ticker" aria-hidden="true">
+    <div class="seq-row">ATGCCTGAAGCTAGCATTGCGATCGGATCCATGCTAGCTAGGCATCGATCGATCGTAGCTAGCATCGGATCCATGCTAGCTAGGCATCGATCGATCGTAG&nbsp;ATGCCTGAAGCTAGCATTGCGATCGGATCCATGCTAGCTAGGCATCGATCGATCGTAGCTAGCATCGGATCCATGCTAGCTAGGCATCGATCGATCGTAG</div>
+    <div class="seq-row rev">MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFK&nbsp;MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFK</div>
+    <div class="seq-row">GGATCCATGCTAGCTAGGCATCGATCGATCGTAGCTAGCATTGCGATCGGATCCATGCTAGCATGCCTGAAGCTAGCATTGCGATCGGATCCATGCTAGC&nbsp;GGATCCATGCTAGCTAGGCATCGATCGATCGTAGCTAGCATTGCGATCGGATCCATGCTAGCATGCCTGAAGCTAGCATTGCGATCGGATCCATGCTAGC</div>
+  </div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">Doctoral Researcher · Bioinformatics</span>
+    <h1>Arzoo<br><em>Shamoon</em></h1>
+    <p class="role">I study disease at single-cell resolution — currently tracing how <strong>myelofibrosis</strong> progresses, cell by cell, at the <strong>West German Cancer Center</strong>, Universitätsklinikum Essen. My work sits at the intersection of NGS, structural biology, and computational drug discovery.</p>
+    <div class="hero-links">
+      <a class="btn primary" href="#publications">View publications</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="portrait">
+      [ your photo here —<br>replace this block<br>with &lt;img src="photo.jpg"&gt; ]
+    </div>
+    <div class="about-text">
+      <span class="eyebrow">About</span>
+      <h2 style="margin-top:14px;font-size:clamp(26px,4vw,34px);">From forest genomes to blood cancer, one sequence at a time.</h2>
+      <p style="margin-top:20px;"><strong>I'm a doctoral researcher and bioinformatician</strong> at Universitätsmedizin / Universität Duisburg-Essen, working within the Department of Hematology and Stem Cell Transplantation at the West German Cancer Center (WTZ). My current research analyses the progression of myelofibrosis, a rare bone marrow cancer, using single-cell sequencing to understand how disease unfolds one cell at a time.</p>
+      <p>My path here started in forest genomics: as a Junior Project Fellow at the Forest Research Institute (ICFRE), Dehradun, I worked on de novo genome assembly and molecular marker development for non-model plant species — training that shaped how I think about extracting signal from messy, low-coverage sequencing data.</p>
+      <p>I hold a Master's degree in Bioinformatics from Jamia Millia Islamia, New Delhi, and my broader interests span single-cell RNA-seq, structural bioinformatics, computer-aided drug discovery, and phylogenomics.</p>
+    </div>
+  </div>
+</section>
+
+<section id="research" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Research focus</span>
+      <h2>Five threads, one question: how does a cell decide what it becomes?</h2>
+    </div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="num">01</span>
+        <h3>Single-cell RNA-seq</h3>
+        <p>Resolving cell-state heterogeneity in myelofibrosis progression and other hematological disease models.</p>
+      </div>
+      <div class="card">
+        <span class="num">02</span>
+        <h3>NGS sequence analysis</h3>
+        <p>Quality control, alignment, and de novo assembly across both clinical and non-model genomic datasets.</p>
+      </div>
+      <div class="card">
+        <span class="num">03</span>
+        <h3>Structural bioinformatics</h3>
+        <p>Linking sequence and structure to understand protein function and disease-relevant mutations.</p>
+      </div>
+      <div class="card">
+        <span class="num">04</span>
+        <h3>Computer-aided drug discovery</h3>
+        <p>Applying in-silico methods — docking and structure-based screening — to accelerate target identification.</p>
+      </div>
+      <div class="card">
+        <span class="num">05</span>
+        <h3>Phylogenomics</h3>
+        <p>Reconstructing evolutionary relationships from genomic and marker data, rooted in my forestry genomics work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Experience &amp; education</span>
+      <h2>A quick history</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-date">Current</span>
+        <h3>Doctoral Researcher — Bioinformatician</h3>
+        <div class="org">West German Cancer Center (WTZ), Dept. of Hematology &amp; Stem Cell Transplantation · Universitätsklinikum Essen, Germany</div>
+        <p>Analysing myelofibrosis progression at single-cell resolution.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Prior</span>
+        <h3>Junior Project Fellow</h3>
+        <div class="org">Forest Research Institute (ICFRE), Dehradun, India</div>
+        <p>Genomic and proteomic analysis of forest species; SSR marker development for genetic diversity and population structure assessment.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Education</span>
+        <h3>M.Sc. Bioinformatics</h3>
+        <div class="org">Jamia Millia Islamia, New Delhi, India</div>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Selected publications</span>
+      <h2>Peer-reviewed work</h2>
+      <p>Full list, citation counts, and co-author network on Google Scholar — linked below.</p>
+    </div>
+    <div class="pub-list">
+      <div class="pub">
+        <div class="pub-year">2024</div>
+        <div>
+          <h3>Bioinformatics insight in shallow genome sequence: a case study of Corymbia hybrid (C. citriodora × C. torelliana)</h3>
+          <div class="authors">Bhandari, M. S., <span class="me">Shamoon, A.</span>, Mishra, G., Meena, R. K.</div>
+          <div class="venue">Proceedings of the National Academy of Sciences, India — Section B</div>
+          <a href="https://doi.org/10.1007/s40011-024-01560-0" target="_blank" rel="noopener">Read paper →</a>
+        </div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2020</div>
+        <div>
+          <h3>First de novo genome specific development, characterization and validation of SSR markers in Genus Salvadora</h3>
+          <div class="authors">Bhandari, M. S., Meena, R. K., <span class="me">Shamoon, A.</span>, Saroj, S., Kant, R.</div>
+          <div class="venue">Molecular Biology Reports, 47, 6997–7008</div>
+          <a href="https://doi.org/10.1007/s11033-020-05758-z" target="_blank" rel="noopener">Read paper →</a>
+        </div>
+      </div>
+      <div class="pub">
+        <div class="pub-year">2020</div>
+        <div>
+          <h3>Peptide Combination Generator: a Tool for Generating Peptide Combinations</h3>
+          <div class="authors">Ali, N., <span class="me">Shamoon, A.</span>, Yadav, N., Sharma, T.</div>
+          <div class="venue">ACS Omega, 5(11), 5781–5783</div>
+          <a href="https://doi.org/10.1021/acsomega.9b03848" target="_blank" rel="noopener">Read paper →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Methods &amp; tools</span>
+      <h2>What's in the pipeline</h2>
+      <p style="font-size:13px;">[Edit this list to match your actual stack — placeholders below reflect your stated research areas.]</p>
+    </div>
+    <div class="tag-grid">
+      <span class="tag">Single-cell analysis (Seurat / Scanpy)</span>
+      <span class="tag">NGS QC &amp; alignment</span>
+      <span class="tag">De novo genome assembly</span>
+      <span class="tag">Molecular docking</span>
+      <span class="tag">Phylogenetic reconstruction</span>
+      <span class="tag">Python</span>
+      <span class="tag">R</span>
+      <span class="tag">Linux / HPC</span>
+      <span class="tag">Statistical analysis</span>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Let's talk research</h2>
+      <p>Open to collaboration, questions about my work, or just a chat about single-cell genomics.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <span class="eyebrow">Email</span>
+        <a href="mailto:your.email@uk-essen.de">your.email@uk-essen.de</a>
+      </div>
+      <div class="contact-item">
+        <span class="eyebrow">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/arzoo-shamoon-7ab806b0/" target="_blank" rel="noopener">linkedin.com/in/arzoo-shamoon</a>
+      </div>
+      <div class="contact-item">
+        <span class="eyebrow">Google Scholar</span>
+        <a href="https://scholar.google.com/citations?user=p4_LxdcAAAAJ&hl=en" target="_blank" rel="noopener">View citations</a>
+      </div>
+      <div class="contact-item">
+        <span class="eyebrow">ORCID</span>
+        <a href="https://orcid.org/0000-0001-6908-9670" target="_blank" rel="noopener">0000-0001-6908-9670</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Arzoo Shamoon</span>
+    <span>Built &amp; hosted on GitHub Pages</span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
