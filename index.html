@@ -166,13 +166,13 @@
   /* ---------- ABOUT ---------- */
   .about-grid{
     display:grid;
-    grid-template-columns:220px 1fr;
+    grid-template-columns:380px 1fr;
     gap:56px;
     align-items:start;
   }
-  @media (max-width:720px){.about-grid{grid-template-columns:1fr;}}
+  @media (max-width:900px){.about-grid{grid-template-columns:1fr;}}
   .portrait{
-    aspect-ratio:1/1;
+    aspect-ratio:3/4;
     background:
       repeating-linear-gradient(135deg, var(--teal) 0 2px, transparent 2px 14px),
       var(--paper);
@@ -180,11 +180,11 @@
     display:flex;align-items:center;justify-content:center;
     font-family:'IBM Plex Mono',monospace;
     font-size:12px;color:var(--ink-soft);
-    text-align:center;padding:16px;
+    text-align:center;padding:0;
     overflow:hidden;
   }
   .portrait img{
-    width:100%;height:100%;object-fit:cover;
+    width:100%;height:100%;object-fit:cover;object-position:top center;
   }
   .about-text p{margin:0 0 16px;font-size:16px;color:var(--ink-soft);}
   .about-text p strong{color:var(--ink);font-weight:600;}
@@ -349,7 +349,8 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#paintings">Paintings</a></li>
-      <li><a href="#moments">Moments</a></li>
+      <li><a href="#presentations">Presentations</a></li>
+      <li><a href="#workshops">Workshops</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
@@ -508,14 +509,25 @@
   </div>
 </section>
 
-<section id="moments" class="alt">
+<section id="presentations" class="alt">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">Out and about</span>
-      <h2>Moments</h2>
-      <p>Talks, conferences, and presentations along the way.</p>
+      <span class="eyebrow">Talks &amp; posters</span>
+      <h2>Presentations</h2>
+      <p>Conferences and poster presentations along the way.</p>
     </div>
-    <div class="gallery-grid" id="moments-grid"></div>
+    <div class="pub-list" id="presentations-list"></div>
+  </div>
+</section>
+
+<section id="workshops">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Training &amp; certifications</span>
+      <h2>Workshops</h2>
+      <p>Courses and workshops completed as part of doctoral training.</p>
+    </div>
+    <div class="pub-list" id="workshops-list"></div>
   </div>
 </section>
 
@@ -602,10 +614,49 @@
     // { src: "images/paintings/painting-2.jpg", caption: "Acrylic on canvas" },
   ];
 
-  // 3) Your "moments" — talks, conferences, presentations.
-  //    Put the image file inside the  images/moments/  folder in the repo.
-  const moments = [
-    // { src: "images/moments/talk-1.jpg", caption: "Presenting at XYZ Conference, 2025" },
+  // 3) Your presentations — talks, conferences, poster sessions. No photos needed,
+  //    just fill in the details. Add one block per presentation.
+  //    Optional: add a "certUrl" field to link to a certificate — see note below.
+  const presentations = [
+    {
+      year: "2025",
+      title: "Poster Presentation",   // NOTE: if this is the "Exploring HLA Expression Dynamics..." poster, swap the title in here
+      venue: "Intelligent Systems for Molecular Biology (ISMB) Conference",
+      description: ""
+    },
+    {
+      year: "2025",
+      title: "Poster Presentation",
+      venue: "Scientific Retreat — Clinic of Hematology and Stem Cell Transplantation",
+      description: ""
+    },
+    {
+      year: "2024",
+      title: "Poster Presentation",
+      venue: "Scientific Retreat — Clinic of Hematology and Stem Cell Transplantation",
+      description: ""
+    },
+    {
+      year: "2024",
+      title: "Poster Presentation",
+      venue: "Day of Research",
+      description: "",
+      certUrl: "Images/Shamoon_TdF%202024.pdf"
+    },
+    {
+      year: "2023",
+      title: "Poster Presentation",
+      venue: "Scientific Retreat — Clinic of Hematology and Stem Cell Transplantation",
+      description: ""
+    },
+  ];
+
+  // 4) Workshops & training — certificates/courses, no photos needed either.
+  const workshops = [
+    { year: "2023", title: "BIOME Statistics I", detail: "Principles of Descriptive and Inferential Statistics" },
+    { year: "2023", title: "BIOME Statistics II", detail: "The p-value; Fisher's significance testing and Neyman–Pearson null hypothesis testing" },
+    { year: "", title: "SnakeMake Tutorial Workshop", detail: "" },
+    { year: "", title: "Good Research Practice for Doctoral Researchers", detail: "" },
   ];
 
   // ============================================================
@@ -628,8 +679,46 @@
     `).join('');
   }
 
+  function renderPresentations(containerId, items){
+    const el = document.getElementById(containerId);
+    if(!items.length){
+      el.innerHTML = `<div class="gallery-empty">No presentations added yet. Add entries to the <code>presentations</code> array near the top of the script.</div>`;
+      return;
+    }
+    el.innerHTML = items.map(item => `
+      <div class="pub">
+        <div class="pub-year">${item.year || ''}</div>
+        <div>
+          <h3>${item.title}</h3>
+          <div class="venue">${item.venue}</div>
+          ${item.description ? `<div class="authors" style="margin-top:8px;">${item.description}</div>` : ''}
+          ${item.certUrl ? `<a href="${item.certUrl}" target="_blank" rel="noopener">View certificate →</a>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderWorkshops(containerId, items){
+    const el = document.getElementById(containerId);
+    if(!items.length){
+      el.innerHTML = `<div class="gallery-empty">No workshops added yet. Add entries to the <code>workshops</code> array near the top of the script.</div>`;
+      return;
+    }
+    el.innerHTML = items.map(item => `
+      <div class="pub">
+        <div class="pub-year">${item.year || ''}</div>
+        <div>
+          <h3>${item.title}</h3>
+          ${item.detail ? `<div class="authors" style="margin-top:6px;">${item.detail}</div>` : ''}
+          ${item.certUrl ? `<a href="${item.certUrl}" target="_blank" rel="noopener">View certificate →</a>` : ''}
+        </div>
+      </div>
+    `).join('');
+  }
+
   renderGallery('paintings-grid', paintings, 'Add files to <code>images/paintings/</code> and list them in the <code>paintings</code> array near the top of the script.');
-  renderGallery('moments-grid', moments, 'Add files to <code>images/moments/</code> and list them in the <code>moments</code> array near the top of the script.');
+  renderPresentations('presentations-list', presentations);
+  renderWorkshops('workshops-list', workshops);
 </script>
 
 </body>
